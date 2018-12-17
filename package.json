@@ -1,0 +1,14 @@
+{
+  "name": "wallpaper-comic",
+  "version": "1.0.0",
+  "description": "Updates Windows wallpaper to daily comic",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Faraz Malik",
+  "license": "MIT",
+  "dependencies": {
+    "wallpaper": "^4.1.0"
+  }
+}
