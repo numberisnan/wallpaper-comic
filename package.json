@@ -7,13 +7,16 @@
     "test": "node index.js"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/farazkaleemmalik/wallpaper-comic"
+    "type": "git",
+    "url": "https://github.com/farazkaleemmalik/wallpaper-comic"
   },
   "author": "Faraz Malik",
   "license": "MIT",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "forever": "^0.15.3",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
     "wallpaper": "^4.1.0"
   }
 }
