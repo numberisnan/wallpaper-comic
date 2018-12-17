@@ -9,6 +9,7 @@
   "author": "Faraz Malik",
   "license": "MIT",
   "dependencies": {
+    "forever": "^0.15.3",
     "wallpaper": "^4.1.0"
   }
 }
