@@ -37,12 +37,12 @@ const dateString = (function createForamttedDate() {
             stream.on('error', () => reject())
         })
     }).catch(err =>  {
-            console.log("Request failed\n",err);
-            setTimeout(main, config.settings.requestRetryRate);
+        console.log("Request failed\n",err);
+        setTimeout(main, config.settings.requestRetryRate);
     });
 })()
-    .then(() => {
-        console.log("Done!")
-        process.exit();
-    })
-    .catch(console.log)
+.then(() => {
+    console.log("Done!")
+    process.exit();
+})
+.catch(console.log);
