@@ -10,5 +10,5 @@ This is a simple project written in JavaScript that updates your wallpaper every
 
 #### To update instantly
 
-`npm start`
+`npm run`
 
