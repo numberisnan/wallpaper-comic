@@ -24,11 +24,10 @@ const dateString = (function createForamttedDate() {
     
     console.log("Requesting image ...");
     await new Promise(function(resolve) { //From https://github.com/request/request-promise/issues/90
-        request.get(imgUrl)
-            .on('response', function(response) {
-                response.pause();
-                resolve(response);  
-            });
+        request.get(imgUrl).on('response', function(response) {
+            response.pause();
+            resolve(response);  
+        });
     }).then(async function(response) {
         var stream = response.pipe(fs.createWriteStream("wallpapers/" + dateString.replace(/\//g, "-") + ".gif"));
         console.log("Writing to disk ...")
