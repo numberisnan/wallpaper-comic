@@ -4,7 +4,7 @@
   "description": "Updates Windows wallpaper to daily comic",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
