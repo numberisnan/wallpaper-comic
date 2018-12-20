@@ -15,6 +15,6 @@ This is a simple project written in JavaScript that updates your wallpaper every
 ## Roadmap
 
 - [x] Download images from GoComics
-
 - [ ] Set images as wallpaper
-- [ ] Have option to run in background
+- [ ] Set to run on computer startup
+- [ ] Try to download later if internet is not available on startup
