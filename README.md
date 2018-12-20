@@ -10,5 +10,11 @@ This is a simple project written in JavaScript that updates your wallpaper every
 
 #### To update instantly
 
-`npm run`
+``` npm run ```
 
+## Roadmap
+
+- [x] Download images from GoComics
+
+- [ ] Set images as wallpaper
+- [ ] Have option to run in background
