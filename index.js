@@ -10,6 +10,7 @@ const dateString = (function createForamttedDate() {
     const date = new Date();
     return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
 })();
+const imageName = dateString.replace(/\//g, "-");
 
 (async function main() {
     console.log("Requesting image url ...")
@@ -29,7 +30,7 @@ const dateString = (function createForamttedDate() {
             resolve(response);  
         });
     }).then(async function(response) {
-        var stream = response.pipe(fs.createWriteStream("wallpapers/" + dateString.replace(/\//g, "-") + ".gif"));
+        var stream = response.pipe(fs.createWriteStream("wallpapers/" + imageName + ".gif"));
         console.log("Writing to disk ...")
         await new Promise(function(resolve,reject){
             stream.on('close', () => resolve())
@@ -39,6 +40,10 @@ const dateString = (function createForamttedDate() {
         console.log("Request failed\n",err);
         setTimeout(main, config.settings.requestRetryRate);
     });
+
+    //Set image as wallpaper
+    console.log("Setting wallpaper ...")
+    await wallpaper.set("wallpapers/"+ imageName + ".gif")
 })()
 .then(() => {
     console.log("Done!")
