@@ -5,7 +5,6 @@ const request = require("request");
 const {parse} = require("node-html-parser");
 const sharp = require("sharp");
 const config = require("./config");
-const {promisify} = require("util");
 const {convert} = require("easyimage")
 
 const dateString = (function createForamttedDate() {
@@ -44,6 +43,7 @@ const resizedImageName = imageName.replace(/\.\w*/g, "_resized.jpeg");
         console.log("Request failed\n",err);
         setTimeout(main, config.settings.requestRetryRate);
     });
+
     console.log("Converting image ...")
     await convert({
         src: imageName,
@@ -51,7 +51,7 @@ const resizedImageName = imageName.replace(/\.\w*/g, "_resized.jpeg");
     })
 
 
-    console.log("Resizing image ...", imageName, resizedImageName);
+    console.log("Resizing image ...");
     await sharp(imageConvertedName)
     .resize(config.settings.screenResolution[0], config.settings.screenResolution[1], {fit: "contain"})
     .toFile(resizedImageName)
