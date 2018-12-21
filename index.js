@@ -48,16 +48,18 @@ const resizedImageName = imageName.replace(/\.\w*/g, "_resized.jpeg");
     await convert({
         src: imageName,
         dst: imageConvertedName
-    })
-
+    });
 
     console.log("Resizing image ...");
     await sharp(imageConvertedName)
     .resize(config.settings.screenResolution[0], config.settings.screenResolution[1], {fit: "contain"})
-    .toFile(resizedImageName)
+    .toFile(resizedImageName);
 
     console.log("Setting wallpaper ...");
     await wallpaper.set(resizedImageName);
+
+    console.log("Deleting extra images ...");
+    fs.unlinkSync(imageName);
 })()
 .then(() => {
     console.log("Done!");
