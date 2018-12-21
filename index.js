@@ -3,16 +3,18 @@ const fs = require("fs");
 const rp = require("request-promise-native");
 const request = require("request");
 const {parse} = require("node-html-parser");
-const imagesize = require("image-size");
 const sharp = require("sharp");
 const config = require("./config");
 const {promisify} = require("util");
+const {convert} = require("easyimage")
 
 const dateString = (function createForamttedDate() {
     const date = new Date();
     return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
 })();
-const imageName = "wallapapers/" + dateString.replace(/\//g, "-") + ".gif";
+const imageName = "wallpapers/" + dateString.replace(/\//g, "-") + ".gif";
+const imageConvertedName = imageName.replace(/\.gif/g, ".jpeg")
+const resizedImageName = imageName.replace(/\.\w*/g, "_resized.jpeg");
 
 (async function main() {
     console.log("Requesting image url ...");
@@ -42,13 +44,20 @@ const imageName = "wallapapers/" + dateString.replace(/\//g, "-") + ".gif";
         console.log("Request failed\n",err);
         setTimeout(main, config.settings.requestRetryRate);
     });
+    console.log("Converting image ...")
+    await convert({
+        src: imageName,
+        dst: imageConvertedName
+    })
 
 
-    console.log("Reading image size ...");
-    var dim = imagesize(imageName);
+    console.log("Resizing image ...", imageName, resizedImageName);
+    await sharp(imageConvertedName)
+    .resize(config.settings.screenResolution[0], config.settings.screenResolution[1], {fit: "contain"})
+    .toFile(resizedImageName)
 
     console.log("Setting wallpaper ...");
-    await wallpaper.set(imageName);
+    await wallpaper.set(resizedImageName);
 })()
 .then(() => {
     console.log("Done!");
